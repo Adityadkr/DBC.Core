@@ -1,4 +1,6 @@
 using DBC.Core.Application.Filters;
+using DBC.Core.Domain.Context;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using Serilog;
 using System.Globalization;
@@ -9,12 +11,15 @@ var builder = WebApplication.CreateBuilder(args);
 
 
 // Add services to the container.
-
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddTransient<ILoggerFactory, LoggerFactory>();
+
+#region DBContext
+builder.Services.AddDbContext<CoreDBContext>(o => o.UseSqlServer(builder.Configuration.GetConnectionString("dev")));
+#endregion
 
 var app = builder.Build();
 

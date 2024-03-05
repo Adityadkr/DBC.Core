@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace DBC.Core.Domain.Entities.Workflow
 {
-    public class TablePropertyEntity: CommonEntity
+    public class TablePropertyConstraints: CommonEntity
     {
     }
 }
